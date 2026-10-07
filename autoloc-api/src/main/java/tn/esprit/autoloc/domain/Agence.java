@@ -1,10 +1,14 @@
 package tn.esprit.autoloc.domain;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
-@Table(name = "agence")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -15,18 +19,14 @@ public class Agence {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idAgence;
 
-    @Column(nullable = false, length = 100)
     private String nom;
-
-    @Column(nullable = false, length = 150)
-    private String adresse;
-
-    @Column(nullable = false, length = 50)
     private String ville;
-
-    @Column(nullable = false, length = 20)
+    private String adresse;
     private String telephone;
 
-    @Column(nullable = false, unique = true, length = 100)
-    private String email;
+    @OneToMany(mappedBy = "agence", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+    private Set<Vehicule> vehicules = new HashSet<>();
+
+    @OneToMany(mappedBy = "agence", fetch = FetchType.LAZY)
+    private Set<Employe> employes = new HashSet<>();
 }

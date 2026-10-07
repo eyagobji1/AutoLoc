@@ -1,6 +1,6 @@
 package tn.esprit.autoloc.domain;
 
-public enum PosteEmploye {
+public enum RoleEmploye {
     AGENT_LOCATION,
     RESPONSABLE_AGENCE,
     MECANICIEN,

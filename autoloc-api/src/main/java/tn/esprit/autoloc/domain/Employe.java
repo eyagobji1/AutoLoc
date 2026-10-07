@@ -30,8 +30,11 @@ public class Employe {
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 30)
-    private PosteEmploye poste;
+    private RoleEmploye poste;
 
     @Column(nullable = false)
     private LocalDate dateEmbauche;
+    @ManyToOne
+    @JoinColumn(name = "id_agence")
+    private Agence agence;
 }

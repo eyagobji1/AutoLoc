@@ -29,5 +29,10 @@ public class Paiement {
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 20)
-    private StatutPaiement statut;
+    private ModePaiement statut;
+
+    // Q18 : côté "plusieurs", crée la clé étrangère id_contrat
+    @ManyToOne
+    @JoinColumn(name = "id_contrat")
+    private Contrat contrat;
 }
